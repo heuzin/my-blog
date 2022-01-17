@@ -1,4 +1,4 @@
-import { Posts } from '../../models/Posts';
+import { Posts } from '../../modals/Posts';
 import PostsGrid from '../postsGrid/PostsGrid';
 import classes from './FeaturedPosts.module.css';
 

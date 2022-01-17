@@ -1,13 +1,13 @@
-import { useState, useRef, FormEvent } from 'react';
+import { useState, useRef, FormEvent, Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import classes from './AuthForm.module.css';
 import Link from 'next/link';
 
-const createUser = async (email: string, password: string) => {
+const createUser = async (firstName: string, lastName: string, email: string, password: string) => {
     const response = await fetch('/api/auth/signup', {
         method: 'POST',
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ firstName, lastName, email, password }),
         headers: {
             'Content-Type': 'application/json',
         },
@@ -24,6 +24,8 @@ const createUser = async (email: string, password: string) => {
 
 const AuthForm = () => {
     const formRef = useRef<HTMLFormElement>(null);
+    const firstNameInputRef = useRef<HTMLInputElement>(null);
+    const lastNameInputRef = useRef<HTMLInputElement>(null);
     const emailInputRef = useRef<HTMLInputElement>(null);
     const passwordInputRef = useRef<HTMLInputElement>(null);
     const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
@@ -41,6 +43,8 @@ const AuthForm = () => {
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        const enteredFirstName = firstNameInputRef.current?.value;
+        const enteredLastName = lastNameInputRef.current?.value;
         const enteredEmail = emailInputRef.current?.value;
         const enteredPassword = passwordInputRef.current?.value;
         const enteredConfirmPassword = confirmPasswordInputRef.current?.value;
@@ -57,8 +61,6 @@ const AuthForm = () => {
                 password: enteredPassword,
             });
 
-            console.log(result);
-
             if (!result.error) {
                 router.replace('/profile');
             } else {
@@ -66,7 +68,13 @@ const AuthForm = () => {
             }
         } else {
             try {
-                await createUser(enteredEmail!, enteredPassword!);
+                await createUser(enteredFirstName!, enteredLastName!, enteredEmail!, enteredPassword!);
+                await signIn('credentials', {
+                    redirect: false,
+                    email: enteredEmail,
+                    password: enteredPassword,
+                });
+                router.replace('/profile');
             } catch (error) {
                 setError((error as Error).message);
             }
@@ -78,6 +86,30 @@ const AuthForm = () => {
             <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
             {error && <p className={classes.error}>{error}</p>}
             <form ref={formRef} className={classes.form} onSubmit={submitHandler}>
+                {!isLogin && (
+                    <div className={classes.nameControls}>
+                        <div className={classes.control}>
+                            <input
+                                aria-label="first name"
+                                placeholder="First Name"
+                                type="text"
+                                id="firstName"
+                                required
+                                ref={firstNameInputRef}
+                            />
+                        </div>
+                        <div className={classes.control}>
+                            <input
+                                aria-label="last name"
+                                placeholder="Last Name"
+                                type="text"
+                                id="lastName"
+                                required
+                                ref={lastNameInputRef}
+                            />
+                        </div>
+                    </div>
+                )}
                 <div className={classes.controls}>
                     <div className={classes.control}>
                         <input

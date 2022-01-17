@@ -5,7 +5,7 @@ import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
 
-import { Posts } from '../../models/Posts';
+import { Posts } from '../../modals/Posts';
 import PostHeader from '../postHeader/PostHeader';
 import classes from './PostContent.module.css';
 

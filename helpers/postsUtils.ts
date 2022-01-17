@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { Posts } from '../models/Posts';
+import { Posts } from '../modals/Posts';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 

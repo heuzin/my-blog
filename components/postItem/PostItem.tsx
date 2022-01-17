@@ -1,4 +1,4 @@
-import { Posts } from '../../models/Posts';
+import { Posts } from '../../modals/Posts';
 import Image from 'next/image';
 import Link from 'next/link';
 import classes from './PostItem.module.css';

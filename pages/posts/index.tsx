@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
 import { getAllPosts } from '../../helpers/postsUtils';
-import { Posts } from '../../models/Posts';
+import { Posts } from '../../modals/Posts';
 import AllPosts from '../../components/allPosts/AllPosts';
 import { Fragment } from 'react';
 import Head from 'next/head';

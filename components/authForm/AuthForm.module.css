@@ -33,6 +33,12 @@
     resize: none;
 }
 
+.nameControls {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 .controls {
     display: flex;
     column-gap: 1rem;

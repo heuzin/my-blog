@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import Hero from '../components/hero/Hero';
 import FeaturedPosts from '../components/featuredPosts/FeaturedPosts';
 import { getFeaturedPosts } from '../helpers/postsUtils';
-import { Posts } from '../models/Posts';
+import { Posts } from '../modals/Posts';
 import Head from 'next/head';
 
 type Props = {

@@ -9,7 +9,6 @@ const AuthPage = () => {
 
     useEffect(() => {
         getSession().then((session) => {
-            console.log(session);
             if (session) {
                 router.replace('/');
             } else {

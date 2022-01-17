@@ -4,7 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { Fragment } from 'react';
 import PostContent from '../../components/postContent/PostContent';
 import { getPostData, getPostsFiles } from '../../helpers/postsUtils';
-import { Posts } from '../../models/Posts';
+import { Posts } from '../../modals/Posts';
 
 type Props = {
     post: Posts;

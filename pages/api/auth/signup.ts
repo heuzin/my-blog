@@ -8,7 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const data = req.body;
-    const { email, password } = data;
+    const { firstName, lastName, email, password } = data;
 
     if (!email || !email.includes('@') || !password || password.trim().length < 7) {
         res.status(422).json({ message: 'Invalid input - password should include at least 7 characters' });
@@ -20,7 +20,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const db = client.db();
 
     const existingUser = await db.collection('users').findOne({ email });
-
     if (existingUser) {
         res.status(422).json({ message: 'User already exists!' });
         client.close();
@@ -29,7 +28,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const hashedPassword = await hashPassword(password);
 
-    const result = db.collection('users').insertOne({ email, password: hashedPassword });
+    await db
+        .collection('users')
+        .insertOne({ firstName, lastName, email, password: hashedPassword, isAdmin: false, favorites: [] });
 
     res.status(201).json({ message: 'Created user!' });
     client.close();
