@@ -1,9 +1,15 @@
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import UserProfile from '../../components/userProfile/UserProfile';
+import { connectToDatabase } from '../../helpers/db';
+import { User } from '../../modals/User';
 
-const ProfilePage = () => {
-    return <UserProfile />;
+type Props = {
+    user: User;
+};
+
+const ProfilePage: React.FC<Props> = ({ user }) => {
+    return <UserProfile user={user} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -18,8 +24,24 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         };
     }
 
+    const userEmail = session.user?.email;
+
+    const client = await connectToDatabase();
+
+    const usersCollection = client.db().collection('users');
+
+    const user = await usersCollection.findOne({ email: userEmail });
+
     return {
-        props: { session },
+        props: {
+            user: {
+                firstName: user?.firstName,
+                lastName: user?.lastName,
+                email: user?.email,
+                isAdmin: user?.isAdmin,
+                favorites: user?.favorites,
+            },
+        },
     };
 };
 

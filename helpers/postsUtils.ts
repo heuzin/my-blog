@@ -47,3 +47,11 @@ export const getFeaturedPosts = () => {
 
     return featuredPosts;
 };
+
+export const getFilteredPosts = (titleToFilter: string) => {
+    const allPosts = getAllPosts();
+
+    const filteredPosts = allPosts.filter((post) => post.title === titleToFilter);
+
+    return filteredPosts;
+};

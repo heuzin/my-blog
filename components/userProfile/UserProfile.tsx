@@ -1,8 +1,13 @@
-import { getSession } from 'next-auth/react';
-import { useEffect } from 'react';
+import { User } from '../../modals/User';
 import ProfileForm from '../profileForm/ProfileForm';
+import classes from './UserProfile.module.css';
 
-const UserProfile = () => {
+type Props = {
+    user: User;
+};
+
+const UserProfile: React.FC<Props> = ({ user }) => {
+    const { firstName, lastName, email, favorites } = user;
     const changePasswordHandler = async (passwordData: any) => {
         const response = await fetch('/api/user/change-password', {
             method: 'PATCH',
@@ -13,34 +18,31 @@ const UserProfile = () => {
         });
 
         const data = await response.json();
-
-        console.log(data);
     };
-
-    useEffect(() => {
-        const getUserProfile = async () => {
-            const response = await fetch('/api/user/profile', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong!');
-            }
-
-            console.log(data);
-        };
-        getUserProfile();
-    }, []);
 
     return (
         <section>
-            <h1>Your User Profile</h1>
-            <ProfileForm onChangePassword={changePasswordHandler} />
+            <h1 className={classes.title}>Your User Profile</h1>
+            <div className={classes.container}>
+                <div>
+                    <div>
+                        <label htmlFor="first-name">First Name</label>
+                        <input type="text" id="first-name" defaultValue={firstName} />
+                    </div>
+                    <div>
+                        <label htmlFor="last-name">Last Name</label>
+                        <input type="text" id="last-name" defaultValue={lastName} />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id="email" defaultValue={email} />
+                    </div>
+                </div>
+                <div>
+                    <ProfileForm onChangePassword={changePasswordHandler} />
+                </div>
+            </div>
+            {favorites.length > 0 ? <p>favorites</p> : <p>No favorites</p>}
         </section>
     );
 };

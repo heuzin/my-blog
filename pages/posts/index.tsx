@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { getAllPosts } from '../../helpers/postsUtils';
+import { getAllPosts, getFilteredPosts } from '../../helpers/postsUtils';
 import { Posts } from '../../modals/Posts';
 import AllPosts from '../../components/allPosts/AllPosts';
 import { Fragment } from 'react';
@@ -10,6 +10,8 @@ type Props = {
 };
 
 const AllPostsPage: React.FC<Props> = ({ posts }) => {
+    console.log(posts[0].title);
+
     return (
         <Fragment>
             <Head>
@@ -23,7 +25,8 @@ const AllPostsPage: React.FC<Props> = ({ posts }) => {
 
 export const getStaticProps: GetStaticProps = () => {
     const allPosts = getAllPosts();
-
+    const post = getFilteredPosts('What is JavaScript?');
+    console.log(post);
     return {
         props: {
             posts: allPosts,
