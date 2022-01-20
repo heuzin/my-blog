@@ -28,6 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     client.close();
     res.status(200).json({
+        id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
