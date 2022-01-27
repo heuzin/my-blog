@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import UserProfile from '../../components/userProfile/UserProfile';
 import { connectToDatabase } from '../../helpers/db';
+import { getFilteredPosts } from '../../helpers/postsUtils';
 import { User } from '../../modals/User';
 
 type Props = {
@@ -32,6 +33,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const user = await usersCollection.findOne({ email: userEmail });
 
+    const favorites = getFilteredPosts(user?.favorites);
+
     return {
         props: {
             user: {
@@ -39,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 lastName: user?.lastName,
                 email: user?.email,
                 isAdmin: user?.isAdmin,
-                favorites: user?.favorites,
+                favorites,
             },
         },
     };

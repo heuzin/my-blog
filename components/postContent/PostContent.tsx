@@ -8,15 +8,20 @@ import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
 import { Posts } from '../../modals/Posts';
 import PostHeader from '../postHeader/PostHeader';
 import classes from './PostContent.module.css';
+import StarIcon from '../starIcon/StarIcon';
 
 type Props = {
     post: Posts;
+    id: any;
+    favorites: string[];
+    addToFavoritsHandler: () => Promise<void>;
+    removeFavoritesHandler: () => Promise<void>;
 };
 
 SyntaxHighlighter.registerLanguage('js', js);
 SyntaxHighlighter.registerLanguage('css', css);
 
-const PostContent: React.FC<Props> = ({ post }) => {
+const PostContent: React.FC<Props> = ({ id, favorites, post, addToFavoritsHandler, removeFavoritesHandler }) => {
     const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
     const customRenderers = {
@@ -53,6 +58,8 @@ const PostContent: React.FC<Props> = ({ post }) => {
 
     return (
         <article className={classes.content}>
+            {id && !favorites.includes(post.title) && <StarIcon color="white" onClick={addToFavoritsHandler} />}
+            {id && favorites.includes(post.title) && <StarIcon color="yellow" onClick={removeFavoritesHandler} />}
             <PostHeader title={post.title} image={imagePath} />
             <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
         </article>

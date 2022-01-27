@@ -4,7 +4,7 @@ import { getSession } from 'next-auth/react';
 import { connectToDatabase } from '../../../helpers/db';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-    if (req.method !== 'PATCH') return;
+    if (req.method !== 'POST') return;
 
     const session = await getSession({ req });
 
@@ -25,7 +25,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await usersCollection.updateOne(
         { _id: docId },
         {
-            $push: {
+            $pull: {
                 favorites: favorites,
             },
         },

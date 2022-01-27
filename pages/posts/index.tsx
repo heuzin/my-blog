@@ -10,8 +10,6 @@ type Props = {
 };
 
 const AllPostsPage: React.FC<Props> = ({ posts }) => {
-    console.log(posts[0].title);
-
     return (
         <Fragment>
             <Head>
@@ -25,8 +23,7 @@ const AllPostsPage: React.FC<Props> = ({ posts }) => {
 
 export const getStaticProps: GetStaticProps = () => {
     const allPosts = getAllPosts();
-    const post = getFilteredPosts('What is JavaScript?');
-    console.log(post);
+
     return {
         props: {
             posts: allPosts,

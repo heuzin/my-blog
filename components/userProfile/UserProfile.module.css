@@ -1,8 +1,66 @@
-.title {
+.userInfo {
     text-align: center;
+    background-image: linear-gradient(to bottom, var(--color-grey-900), var(--color-grey-800));
+    padding: var(--size-8) 0;
+}
+
+.userInfo h1 {
+    font-size: 3rem;
+    margin: var(--size-3) 0;
+    color: var(--color-grey-300);
+}
+
+.userInfo p {
+    font-size: var(--size-6);
+    color: var(--color-grey-200);
+    width: 90%;
+    max-width: 40rem;
+    margin: auto;
+    height: 40px;
+    text-align: start;
+}
+
+.gripContainer {
+    width: 90%;
+    max-width: 60rem;
+    margin: var(--size-8) auto;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1.5rem;
+    align-content: center;
+}
+
+.posts {
+    width: 90%;
+    max-width: 70rem;
+    margin: var(--size-8) auto;
+}
+
+.favorites {
+    font-size: var(--size-8);
+    color: var(--color-grey-800);
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .favorites {
+        font-size: var(--size-16);
+    }
+}
+
+@media (max-width: 1050px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .userInfo p {
+        text-align: center;
+    }
 }

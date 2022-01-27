@@ -1,4 +1,5 @@
 import { FormEvent, useRef } from 'react';
+import classes from './ProfileForm.module.css';
 
 const ProfileForm = (props: any) => {
     const oldPasswordRef = useRef<HTMLInputElement>(null);
@@ -16,18 +17,16 @@ const ProfileForm = (props: any) => {
         });
     };
     return (
-        <form onSubmit={submitHandler}>
-            <div>
-                <label htmlFor="new-password">New Password</label>
+        <form className={classes.form} onSubmit={submitHandler}>
+            <div className={classes.control}>
+                <label htmlFor="new-password">New Password: </label>
                 <input type="password" id="new-password" ref={newPasswordRef} />
             </div>
-            <div>
-                <label htmlFor="old-password">Old Password</label>
+            <div className={classes.control}>
+                <label htmlFor="old-password">Old Password: </label>
                 <input type="password" id="old-password" ref={oldPasswordRef} />
             </div>
-            <div>
-                <button>Change Password</button>
-            </div>
+            <button className={classes.button}>Change Password</button>
         </form>
     );
 };

@@ -1,0 +1,8 @@
+.icon {
+    cursor: pointer;
+    position: absolute;
+}
+
+.icon:hover {
+    color: yellow;
+}

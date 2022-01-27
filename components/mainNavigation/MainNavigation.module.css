@@ -59,3 +59,18 @@
         font-size: var(--size-5);
     }
 }
+
+@media (max-width: 780px) {
+    .header {
+        padding: 0 5%;
+    }
+}
+
+@media (max-width: 550px) {
+    .header {
+        display: flex;
+        flex-direction: column;
+        height: 5rem;
+        padding-top: 10px;
+    }
+}

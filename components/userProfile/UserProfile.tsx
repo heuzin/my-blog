@@ -1,4 +1,11 @@
+import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/react';
+import { Fragment, useEffect, useState } from 'react';
+import { connectToDatabase } from '../../helpers/db';
+import { getFilteredPosts } from '../../helpers/postsUtils';
+import { Posts } from '../../modals/Posts';
 import { User } from '../../modals/User';
+import PostsGrid from '../postsGrid/PostsGrid';
 import ProfileForm from '../profileForm/ProfileForm';
 import classes from './UserProfile.module.css';
 
@@ -8,6 +15,7 @@ type Props = {
 
 const UserProfile: React.FC<Props> = ({ user }) => {
     const { firstName, lastName, email, favorites } = user;
+
     const changePasswordHandler = async (passwordData: any) => {
         const response = await fetch('/api/user/change-password', {
             method: 'PATCH',
@@ -21,29 +29,34 @@ const UserProfile: React.FC<Props> = ({ user }) => {
     };
 
     return (
-        <section>
-            <h1 className={classes.title}>Your User Profile</h1>
-            <div className={classes.container}>
-                <div>
-                    <div>
-                        <label htmlFor="first-name">First Name</label>
-                        <input type="text" id="first-name" defaultValue={firstName} />
-                    </div>
-                    <div>
-                        <label htmlFor="last-name">Last Name</label>
-                        <input type="text" id="last-name" defaultValue={lastName} />
-                    </div>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id="email" defaultValue={email} />
+        <Fragment>
+            <section className={classes.userInfo}>
+                <h1>Your User Profile</h1>
+                <div className={classes.gripContainer}>
+                    <div className={classes.container}>
+                        <div className={classes.box}>
+                            <p>
+                                Name: {firstName} {lastName}
+                            </p>
+                            <p>Email: {email}</p>
+                        </div>
+                        <div className={classes.box}>
+                            <ProfileForm onChangePassword={changePasswordHandler} />
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <ProfileForm onChangePassword={changePasswordHandler} />
-                </div>
-            </div>
-            {favorites.length > 0 ? <p>favorites</p> : <p>No favorites</p>}
-        </section>
+            </section>
+            <section>
+                <h2 className={classes.favorites}>Favorites</h2>
+                {favorites.length > 0 ? (
+                    <section className={classes.posts}>
+                        <PostsGrid posts={favorites} />
+                    </section>
+                ) : (
+                    <p style={{ textAlign: 'center' }}>No favorites</p>
+                )}
+            </section>
+        </Fragment>
     );
 };
 

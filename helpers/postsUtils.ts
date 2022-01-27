@@ -48,10 +48,15 @@ export const getFeaturedPosts = () => {
     return featuredPosts;
 };
 
-export const getFilteredPosts = (titleToFilter: string) => {
+export const getFilteredPosts = (titleToFilter: string[]) => {
     const allPosts = getAllPosts();
 
-    const filteredPosts = allPosts.filter((post) => post.title === titleToFilter);
+    let filteredPosts: Posts[] = [];
+
+    titleToFilter.forEach((postTitle) => {
+        const posts = allPosts.filter((post) => post.title === postTitle);
+        filteredPosts = [...posts];
+    });
 
     return filteredPosts;
 };

@@ -1,13 +1,17 @@
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
-import { User } from 'next-auth';
-import { getSession } from 'next-auth/react';
 import Head from 'next/head';
-import { ParsedUrlQuery } from 'querystring';
+import { getSession } from 'next-auth/react';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { Fragment, useEffect, useState } from 'react';
-import PostContent from '../../components/postContent/PostContent';
-import { connectToDatabase } from '../../helpers/db';
-import { getPostData, getPostsFiles } from '../../helpers/postsUtils';
+import { ParsedUrlQuery } from 'querystring';
 import { Posts } from '../../modals/Posts';
+import PostContent from '../../components/postContent/PostContent';
+import { getPostData, getPostsFiles } from '../../helpers/postsUtils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconLookup, IconDefinition, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
+import StarIcon from '../../components/starIcon/StarIcon';
+
+const startLookup: IconLookup = { prefix: 'fas', iconName: 'star' };
+const startDefinition: IconDefinition = findIconDefinition(startLookup);
 
 type Props = {
     post: Posts;
@@ -15,28 +19,51 @@ type Props = {
 
 const SingleDetailPage: React.FC<Props> = ({ post }) => {
     const [id, setId] = useState();
+    const [favorites, setFavorites] = useState<string[]>([]);
+
     const addToFavoritsHandler = async () => {
+        setFavorites(favorites.concat(post.title));
+
         await fetch('/api/favorites', {
             method: 'PATCH',
-            body: JSON.stringify({ id }),
+            body: JSON.stringify({ id, favorites: post.title }),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
     };
+
+    const removeFavoritesHandler = async () => {
+        setFavorites(favorites.filter((item) => item !== post.title));
+
+        await fetch('/api/favorites/remove-favorite', {
+            method: 'POST',
+            body: JSON.stringify({ id, favorites: post.title }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    };
+
     useEffect(() => {
         const getUser = async () => {
+            const session = await getSession();
+
+            if (!session) return;
+
             const response = await fetch('/api/user/profile', {
                 method: 'GET',
-                // body: JSON.stringify({ email: session?.user?.email }),
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
+
             const data = await response.json();
-            console.log(data.favorites);
+
+            setFavorites(data.favorites);
             setId(data.id);
         };
+
         getUser();
     }, []);
 
@@ -46,8 +73,13 @@ const SingleDetailPage: React.FC<Props> = ({ post }) => {
                 <title>{post.title}</title>
                 <meta name="description" content={post.excerpt} />;
             </Head>
-            <button onClick={addToFavoritsHandler}>Add To Favorites</button>
-            <PostContent post={post} />;
+            <PostContent
+                id={id}
+                favorites={favorites}
+                post={post}
+                addToFavoritsHandler={addToFavoritsHandler}
+                removeFavoritesHandler={removeFavoritesHandler}
+            />
         </Fragment>
     );
 };
