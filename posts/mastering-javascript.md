@@ -34,7 +34,7 @@ let x = 10;
 let y = 20;
 ```
 
-There's also another way to declare variables, which is with ***var*** keyword, but it's not a recomended to use it in JavaScript. You can learn more about declaring variables, good practices, different use cases, downsides and benefits [here](https://my-blog-blond-pi.vercel.app/).
+There's also another way to declare variables, which is with ***var*** keyword, but it's not a recomended to use it in JavaScript. You can learn more about declaring variables, good practices, different use cases, downsides and benefits [here](https://my-blog-blond-pi.vercel.app/posts/javascript-datastructure).
 
 To declare a function, you use the ***function*** keyword:
 
