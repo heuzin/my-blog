@@ -124,4 +124,4 @@ There are 8 basic data types in JavaScript.
 * ***symbol*** for unique identifiers.
 * ***object*** for more complex data structures.
 
-In the next chapter, we will be talking about Objects, also referred as **Non-primitive or Reference Data Type**. Learn more about it [**here**](https://www.javascript.com/).
+In the next chapter, we will be talking about Objects, also referred as [**Non-primitive or Reference Data Type**](https://www.javascript.com/).
