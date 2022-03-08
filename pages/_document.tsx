@@ -5,13 +5,17 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <meta name="title" property="og:title" content="[Content title here]" />
+                    <meta name="title" property="og:title" content="Blog - Matheus Silva" />
                     <meta
                         name="image"
                         property="og:image"
-                        content="https://my-blog-blond-pi.vercel.app/_next/image?url=%2Fimages%2Fsite%2Fmatheus.png&w=384&q=75"
+                        content="http://farmgirlmarketingsolutions.com/wp-content/uploads/2015/12/blog-pic-b2c.jpg"
                     />
-                    <meta name="description" property="og:description" content="This is my Blog site." />
+                    <meta
+                        name="description"
+                        property="og:description"
+                        content="I blog about web development - especially JavaScript frameworks and libraries."
+                    />
                     <meta name="author" content="Matheus Silva" />
                 </Head>
                 <body>
