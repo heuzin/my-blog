@@ -16,7 +16,13 @@ class MyDocument extends Document {
                         property="og:description"
                         content="I blog about web development - especially JavaScript frameworks and libraries."
                     />
-                    <meta name="author" content="Matheus Silva" />
+                    <meta property="og:image:type" content="image/jpeg" />
+                    <meta property="og:image:width" content="800" />
+                    <meta property="og:image:height" content="600" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:type" content="article" />
+                    <meta property="article:author" content="Matheus Silva" />
+                    <meta property="article:published_time" content="date_time" />
                 </Head>
                 <body>
                     <Main />
