@@ -15,9 +15,9 @@ const SingleDetailPage: React.FC<Props> = ({ post }) => {
         <Fragment>
             <Head>
                 <title>{post.title}</title>
-                <meta name="description" content={post.excerpt} />;
+                <meta name="description" content={post.excerpt} />
             </Head>
-            <PostContent post={post} />;
+            <PostContent post={post} />
         </Fragment>
     );
 };
