@@ -3,7 +3,7 @@ title: IAM - Identity and Access Management
 excerpt: Understanding the Importance of IAM
 image: iam-identity-access-management.png
 isFeatured: true
-date: '2023-04-10'
+date: '2023-03-31'
 ---
 
 With AWS Identity and Access Management (IAM), you can specify who or what can access services and resources in AWS,
