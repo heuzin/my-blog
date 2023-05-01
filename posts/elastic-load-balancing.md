@@ -79,3 +79,21 @@ scaling policies, then Amazon EC2 Auto Scaling can launch or terminate instances
 or decreases.
 
 ![Auto Scaling Group](auto-scaling-group.png)
+
+# Summary
+
+-   High Availability
+    -   Having your application available in multiple Avaiability Zones
+-   Scalability
+    -   Increasing the size of an instance (vertical), increasing the number of instaces (horizontal)
+-   Scalability
+    -   Ability to scale up and down based on eamand
+-   Elastic Load Balancers (ELB)
+    -   Distribute traffic across backend EC2 instances, can be Multi-AZ
+    -   Supports health checks
+    -   3 Types: Application (HTTP - L7), Network (TCP - L4), Gateway (L3)
+-   Auto Scaling Group (ASG)
+    -   Implement Elasticity for application, across multiple AZ
+    -   Scale EC2 instances based on demand on your system
+    -   Replace unhealthy intances
+    -   Integrated with ELB
