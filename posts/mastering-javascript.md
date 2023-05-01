@@ -2,7 +2,7 @@
 title: What is JavaScript?
 excerpt: JavaScript is the most important programming language for web development. You probably don't know it well enough!
 image: mastering-js-thumb.png
-isFeatured: true
+isFeatured: false
 date: '2022-01-12'
 ---
 

@@ -2,7 +2,7 @@
 title: JavaScript Under The Hood
 excerpt: What Is The JavaScript Engine and How It Works
 image: javascript-engine.png
-isFeatured: true
+isFeatured: false
 date: '2022-09-26'
 ---
 

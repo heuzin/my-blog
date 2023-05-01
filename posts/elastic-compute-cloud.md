@@ -3,7 +3,7 @@ title: EC2 - Elastic Compute Cloud
 excerpt: Secure and Resizable Cloud Compute
 image: elastic-compute-cloud.png
 isFeatured: true
-date: '2023-05-17'
+date: '2023-05-02'
 ---
 
 Amazon EC2 is one of the most used and most basic services on AWS that lets users launch and manage server instances, at
@@ -80,3 +80,12 @@ by default and all outbound traffic is authorised by default.
 
 EC2 Instance Role provides the Instance access to a set of IAM Credentials and – if the associated IAM Policies permit –
 access to AWS services.
+
+# Summary
+
+-   **EC2 Instance:** AMI (OS) + Instance Size (CPU + RAM) + Storage + Security Groups + EC2 User Data
+-   **Security Groups:** Firewall attatched to the EC2 instance
+-   **EC2 User Data:** Script launched at the first start of an instance
+-   **EC2 Instance Rolse:** Instance access to a set of IAM Credentials and AWS services
+-   **Purchasing Options:** On-Demand, Spot, Reserved (Standard + Convertible + Scheduled), Dedicated Host, Dedicated
+    Instance
