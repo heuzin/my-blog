@@ -3,7 +3,7 @@ title: EC2 Instance Storage
 excerpt: Storage Options on AWS
 image: ec2-instance-storage.png
 isFeatured: true
-date: '2023-05-21'
+date: '2023-09-25'
 ---
 
 # EBS - Elastic Block Store
