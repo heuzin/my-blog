@@ -2,7 +2,7 @@
 title: JavaScript Call Stack and Memory Heap
 excerpt: What It Is and Why It's Necessary
 image: javascript-callstack.png
-isFeatured: true
+isFeatured: false
 date: '2023-02-03'
 ---
 

@@ -2,7 +2,7 @@
 title: JavaScript Non-Primitive Types
 excerpt: Also known as derived data types or reference data types
 image: non-primitive-types.png
-isFeatured: true
+isFeatured: false
 date: '2022-02-26'
 ---
 

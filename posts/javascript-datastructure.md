@@ -2,7 +2,7 @@
 title: Understanding Data Types in JavaScript
 excerpt: Biguinner's Guide to JavaScript Data Types
 image: javascript-datastructure.png
-isFeatured: true
+isFeatured: false
 date: '2022-01-26'
 ---
 

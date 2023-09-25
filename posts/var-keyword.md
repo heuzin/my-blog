@@ -2,7 +2,7 @@
 title: The var keyword in JavaScript
 excerpt: Why is var considered a bad practice in Javascript?
 image: javascript-variables.png
-isFeatured: true
+isFeatured: false
 date: '2022-06-07'
 ---
 
